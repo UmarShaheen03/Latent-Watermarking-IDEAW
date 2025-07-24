@@ -208,15 +208,17 @@ class TimeStretch(nn.Module):
 
 
 class EncodecAttack(nn.Module):
-    def __init__(self, device):
+    def __init__(self, opt, device):
         super(EncodecAttack, self).__init__()
         from encodec.models.encodec import EncodecModel
         import torchaudio
 
         self.device = device
         # Load pretrained Encodec model (24kHz)
+        self.bandwith = opt["AttackLayer"]["EncodecAttack"]["bandwidth"]
+
         self.model = EncodecModel.encodec_model_24khz()
-        self.model.set_target_bandwidth(6.0)
+        self.model.set_target_bandwidth(self.bandwith)
         self.model.to(self.device)
         self.model.eval()
 

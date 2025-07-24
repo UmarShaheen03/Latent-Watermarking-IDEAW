@@ -27,7 +27,7 @@ Discriminator:
   input_size: 16000
 
 AttackLayer:
-  att_num: 8
+  att_num: 9
   GaussianNoise:
     snr: 15
   Bandpass:
@@ -48,6 +48,8 @@ AttackLayer:
     bitrate: "192k"
   TimeStretch:
     rate: 0.98
+  EncodecAttack:
+    bandwidth: 6.0
 
 BalanceBlock:
   channel: 2
