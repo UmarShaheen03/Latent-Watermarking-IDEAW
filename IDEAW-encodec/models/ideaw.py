@@ -90,6 +90,7 @@ class IDEAW(nn.Module):
             n_fft=self.n_fft,
             hop_length=self.hop_len,
             window=window,
+            #return_complex=True,
             return_complex=False,
         )
         return ret  # [B, F, T, C]
