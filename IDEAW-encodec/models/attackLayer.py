@@ -24,6 +24,9 @@ import yaml
 from scipy import signal
 from scipy.io.wavfile import write
 
+from encodec import EncodecModel
+import torchaudio
+
 
 class AttackLayer(nn.Module):
     def __init__(self, config_path, device):
@@ -38,7 +41,7 @@ class AttackLayer(nn.Module):
         self.ampMdf = AmplitudeModify(self.config)
         self.mp3compress = Mp3Compress(self.config, device)
         self.timeStretch = TimeStretch(self.config, device)
-        self.encodecAttack = EncodecAttack(device)
+        self.encodecAttack = EncodecAttack(self.config, device)
 
     """ Attack layer strategy:
         Each attack is sample-wise. 
@@ -210,8 +213,7 @@ class TimeStretch(nn.Module):
 class EncodecAttack(nn.Module):
     def __init__(self, opt, device):
         super(EncodecAttack, self).__init__()
-        from encodec.models.encodec import EncodecModel
-        import torchaudio
+        
 
         self.device = device
         # Load pretrained Encodec model (24kHz)

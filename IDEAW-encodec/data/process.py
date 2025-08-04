@@ -38,9 +38,13 @@ if __name__ == "__main__":
 
     for i, audio_path in enumerate(audio_path_list):
         # Read & Resample
-        audio, _, _ = read_resample(
-            audio_path=audio_path, sr=sample_rate, audio_limit_len=None
-        )
+        try:
+            audio, _, _ = read_resample(
+                audio_path=audio_path, sr=sample_rate, audio_limit_len=None
+            )
+        except Exception as e:
+            print(f"[Error] Skipped file: {audio_path}\n  Reason: {e}")
+            continue
         audio_len = audio_len_second(audio, sample_rate)
         sample_num = int(audio_len / audio_segment_len)
         for j in range(sample_num):

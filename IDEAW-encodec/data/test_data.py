@@ -8,7 +8,7 @@ from scipy.io.wavfile import write
 from utils import *
 from dataset import AWdataset, get_data_loader, infinite_iter
 
-pickle_path = "../Watermark/miniAWdata_pickle/audio.pkl"
+pickle_path = "./data/pickl/audio.pkl"
 
 # Load pickle dataset
 with open(pickle_path, "rb") as f:
