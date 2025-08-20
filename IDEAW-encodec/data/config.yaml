@@ -1,4 +1,5 @@
 # Data process configuration
+mp3_path: './data/fma_medium' #Modify it!
 data_path: './data/fma_wav' # Modify it!
 out_path: './data/pickl' # Modify it!
 sample_rate: 16000
