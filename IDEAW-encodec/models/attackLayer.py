@@ -179,7 +179,7 @@ class Mp3Compress(nn.Module):
         self.device = device
 
     def forward(self, audio):
-        write("./output/tmp.wav", self.sr, audio.detach().numpy())
+        write("./tmp/tmp.wav", self.sr, audio.detach().numpy())
         wav_segment = pydub.AudioSegment.from_wav("./tmp/tmp.wav")
         wav_segment.export(
             "./tmp/tmp.mp3",

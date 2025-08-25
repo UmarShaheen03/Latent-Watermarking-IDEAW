@@ -133,36 +133,36 @@ class Solver(object):
         if robustness:
             torch.save(
                 self.model.state_dict(),
-                f"{self.args.store_model_path}stage_II/ideaw.ckpt",
+                f"{self.args.store_model_path}/stage_II/ideaw.ckpt",
             )
             torch.save(
                 self.optim_I.state_dict(),
-                f"{self.args.store_model_path}stage_II/optim1.opt",
+                f"{self.args.store_model_path}/stage_II/optim1.opt",
             )
             torch.save(
                 self.optim_II.state_dict(),
-                f"{self.args.store_model_path}stage_II/optim2.opt",
+                f"{self.args.store_model_path}/stage_II/optim2.opt",
             )
             torch.save(
                 self.optim_III.state_dict(),
-                f"{self.args.store_model_path}stage_II/optim3.opt",
+                f"{self.args.store_model_path}/stage_II/optim3.opt",
             )
         else:
             torch.save(
                 self.model.state_dict(),
-                f"{self.args.store_model_path}stage_I/ideaw.ckpt",
+                f"{self.args.store_model_path}/stage_I/ideaw.ckpt",
             )
             torch.save(
                 self.optim_I.state_dict(),
-                f"{self.args.store_model_path}stage_I/optim1.opt",
+                f"{self.args.store_model_path}/stage_I/optim1.opt",
             )
             torch.save(
                 self.optim_II.state_dict(),
-                f"{self.args.store_model_path}stage_I/optim2.opt",
+                f"{self.args.store_model_path}/stage_I/optim2.opt",
             )
             torch.save(
                 self.optim_III.state_dict(),
-                f"{self.args.store_model_path}stage_I/optim3.opt",
+                f"{self.args.store_model_path}/stage_I/optim3.opt",
             )
 
     # load trained model

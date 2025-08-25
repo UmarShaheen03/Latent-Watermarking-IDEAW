@@ -1,6 +1,6 @@
 # for training (optimizer configuration)
 train:
-  batch_size: 4
+  batch_size: 2
   #batch_size: 16
   num_workers: 0
   lambda_integ: 1

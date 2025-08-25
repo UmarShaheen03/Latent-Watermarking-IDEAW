@@ -13,25 +13,25 @@ import warnings
 from scipy.io.wavfile import write
 
 from models.ideaw import IDEAW
-from data.process import read_resample
+from data.utils import read_resample
 from metrics import calc_acc, signal_noise_ratio
 
 warnings.filterwarnings("ignore")
 
 # mini config
-msg_bit = 16
+msg_bit = 46
 lcode_bit = 10
 
 # config paths
-config_model_path = "/path/to/config/yaml"
-ckpt_path = "/path/to/ideaw/ckpt"
+config_model_path = "./models/config.yaml"
+ckpt_path = "./model_store/stage_II/ideaw.ckpt"
 
 # audio path
-audio_path = "/path/to/wav"
-output_path = "/path/to/wav"
+audio_path = "./data/test_audio/input/069990.wav"
+output_path = "./data/test_audio/output/069990_wmd.wav"
 
 # device
-device = "cuda"
+device = "cpu"
 
 if __name__ == "__main__":
     # build model and load trained parameters
@@ -109,7 +109,10 @@ if __name__ == "__main__":
     write(output_path, 16000, audio_wmd)
 
     # calculate SNR
-    SNR = signal_noise_ratio(audio.squeeze().cpu().numpy(), audio_wmd)
+    SNR = signal_noise_ratio(
+    torch.tensor(audio.squeeze(), dtype=torch.float32),
+    torch.tensor(audio_wmd, dtype=torch.float32)
+    )
 
     print(f"[IDEAW]audio length: {audio_length}")
     print(f"[IDEAW]embedding time cost: {embed_time_cost}s")

@@ -42,6 +42,7 @@ if __name__ == "__main__":
             audio, _, _ = read_resample(
                 audio_path=audio_path, sr=sample_rate, audio_limit_len=None
             )
+            print(f"DEBUG: {audio_path}, length={len(audio)}, sr={sample_rate}", end="\r")
         except Exception as e:
             print(f"[Error] Skipped file: {audio_path}\n  Reason: {e}")
             continue

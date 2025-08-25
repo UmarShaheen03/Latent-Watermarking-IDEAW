@@ -38,13 +38,13 @@ def to_equal_length(original, audio_watermarked):
 
 def signal_noise_ratio(original, audio_watermarked):
     original, audio_watermarked = to_equal_length(original, audio_watermarked)
-    noise_strength = numpy.sum((original - audio_watermarked) ** 2)
+    noise_strength = torch.sum((original - audio_watermarked) ** 2)
     if noise_strength == 0:
         return numpy.inf
-    signal_strength = numpy.sum(original**2)
-    ratio = signal_strength / noise_strength
+    signal_strength = torch.sum(original ** 2)
+    ratio = torch.clamp(signal_strength / noise_strength, min=1e-10)
     ratio = max(1e-10, ratio)
-    return 10 * numpy.log10(ratio)
+    return 10.0 * torch.log10(ratio).item()
 
 
 # SNR
